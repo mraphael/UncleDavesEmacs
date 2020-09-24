@@ -7,7 +7,7 @@
 [[./img/screen.png]]
 * Installation
 ** Quick Installation
-=git clone https://github.com/daedreth/UncleDavesEmacs ~/.emacs.d=
+=git clone https://github.com/mraphael/UncleDavesEmacs ~/.emacs.d=
 
 Keep in mind that you should remove your own ~/.emacs and your ~/.emacs.d
 prior to cloning this configuration. The next time you launch Emacs (and I recommend
@@ -382,19 +382,19 @@ to suit the software that you are using. What good is a launcher for discord if 
     (interactive)
     (start-process name nil name))
 
-  (defun daedreth/launch-discord ()
+  (defun mraphael/launch-discord ()
     (interactive)
     (exwm-async-run "discord"))
 
-  (defun daedreth/launch-browser ()
+  (defun mraphael/launch-browser ()
     (interactive)
     (exwm-async-run "qutebrowser"))
 
-  (defun daedreth/lock-screen ()
+  (defun mraphael/lock-screen ()
     (interactive)
     (exwm-async-run "slock"))
 
-  (defun daedreth/shutdown ()
+  (defun mraphael/shutdown ()
     (interactive)
     (start-process "halt" nil "sudo" "halt"))
 #+END_SRC
@@ -402,10 +402,10 @@ to suit the software that you are using. What good is a launcher for discord if 
 *** Keybindings to start processes
 These can be modified as well, suit yourself.
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "s-d") 'daedreth/launch-discord)
-  (global-set-key (kbd "<s-tab>") 'daedreth/launch-browser)
-  (global-set-key (kbd "<XF86ScreenSaver>") 'daedreth/lock-screen)
-  (global-set-key (kbd "<XF86PowerOff>") 'daedreth/shutdown)
+  (global-set-key (kbd "s-d") 'mraphael/launch-discord)
+  (global-set-key (kbd "<s-tab>") 'mraphael/launch-browser)
+  (global-set-key (kbd "<XF86ScreenSaver>") 'mraphael/lock-screen)
+  (global-set-key (kbd "<XF86PowerOff>") 'mraphael/shutdown)
 #+END_SRC
 
 ** Audio controls
@@ -446,7 +446,7 @@ These won't work in the terminal version or the virtual console, obvious reasons
 
 *** Screenshotting the entire screen
 #+BEGIN_SRC emacs-lisp
-  (defun daedreth/take-screenshot ()
+  (defun mraphael/take-screenshot ()
     "Takes a fullscreen screenshot of the current workspace"
     (interactive)
     (when window-system
@@ -459,12 +459,12 @@ These won't work in the terminal version or the virtual console, obvious reasons
     (start-process "screenshot" nil "import" "-window" "root" 
                (concat (getenv "HOME") "/" (subseq (number-to-string (float-time)) 0 10) ".png"))
     (message "Screenshot taken!")))
-  (global-set-key (kbd "<print>") 'daedreth/take-screenshot)
+  (global-set-key (kbd "<print>") 'mraphael/take-screenshot)
 #+END_SRC
 
 *** Screenshotting a region
 #+BEGIN_SRC emacs-lisp
-  (defun daedreth/take-screenshot-region ()
+  (defun mraphael/take-screenshot-region ()
     "Takes a screenshot of a region selected by the user."
     (interactive)
     (when window-system
@@ -472,7 +472,7 @@ These won't work in the terminal version or the virtual console, obvious reasons
     (call-process "convert" nil nil nil ".newScreen.png" "-shave" "1x1"
                   (concat (getenv "HOME") "/" (subseq (number-to-string (float-time)) 0 10) ".png"))
     (call-process "rm" nil nil nil ".newScreen.png")))
-  (global-set-key (kbd "<Scroll_Lock>") 'daedreth/take-screenshot-region)
+  (global-set-key (kbd "<Scroll_Lock>") 'mraphael/take-screenshot-region)
 #+END_SRC
 
 ** Default browser
@@ -791,7 +791,7 @@ it's rather similar to ido-vertical though.
     ("C-x C-b" . 'helm-buffers-list)
     ("M-x" . 'helm-M-x)
     :config
-    (defun daedreth/helm-hide-minibuffer ()
+    (defun mraphael/helm-hide-minibuffer ()
       (when (with-helm-buffer helm-echo-input-in-header-line)
         (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
           (overlay-put ov 'window (selected-window))
@@ -799,7 +799,7 @@ it's rather similar to ido-vertical though.
                        (let ((bg-color (face-background 'default nil)))
                          `(:background ,bg-color :foreground ,bg-color)))
           (setq-local cursor-type nil))))
-    (add-hook 'helm-minibuffer-set-up-hook 'daedreth/helm-hide-minibuffer)
+    (add-hook 'helm-minibuffer-set-up-hook 'mraphael/helm-hide-minibuffer)
     (setq helm-autoresize-max-height 0
           helm-autoresize-min-height 40
           helm-M-x-fuzzy-match t
@@ -855,32 +855,32 @@ Why on earth does a function called =kill-word= not .. kill a word.
 It instead deletes characters from your cursors position to the end of the word,
 let's make a quick fix and bind it properly.
 #+BEGIN_SRC emacs-lisp
-  (defun daedreth/kill-inner-word ()
+  (defun mraphael/kill-inner-word ()
     "Kills the entire word your cursor is in. Equivalent to 'ciw' in vim."
     (interactive)
     (forward-char 1)
     (backward-word)
     (kill-word 1))
-  (global-set-key (kbd "C-c w k") 'daedreth/kill-inner-word)
+  (global-set-key (kbd "C-c w k") 'mraphael/kill-inner-word)
 #+END_SRC
 
 ** Improved copy-word
 And again, the same as above but we make sure to not delete the source word.
 #+BEGIN_SRC emacs-lisp
-  (defun daedreth/copy-whole-word ()
+  (defun mraphael/copy-whole-word ()
     (interactive)
     (save-excursion
       (forward-char 1)
       (backward-word)
       (kill-word 1)
       (yank)))
-  (global-set-key (kbd "C-c w c") 'daedreth/copy-whole-word)
+  (global-set-key (kbd "C-c w c") 'mraphael/copy-whole-word)
 #+END_SRC
 
 ** Copy a line
 Regardless of where your cursor is, this quickly copies a line.
 #+BEGIN_SRC emacs-lisp
-  (defun daedreth/copy-whole-line ()
+  (defun mraphael/copy-whole-line ()
     "Copies a line without regard for cursor position."
     (interactive)
     (save-excursion
@@ -888,7 +888,7 @@ Regardless of where your cursor is, this quickly copies a line.
        (buffer-substring
         (point-at-bol)
         (point-at-eol)))))
-  (global-set-key (kbd "C-c l c") 'daedreth/copy-whole-line)
+  (global-set-key (kbd "C-c l c") 'mraphael/copy-whole-line)
 #+END_SRC
 
 ** Kill a line
@@ -1178,60 +1178,6 @@ Each category also has additional settings.
       (add-hook 'shell-mode-hook 'shell-mode-company-init))
 #+END_SRC
 
-*** lua/löve
-I must regrettably admit that =company= sucks with Lua/LÖVE.
-Which is also why I have =AC= now.
-I needed to do some shenanigans to get great auto-completion but here goes.
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'lua-mode-hook 'yas-minor-mode)
-  (add-hook 'lua-mode-hook 'flycheck-mode)
-
-  ;;; this will download the necessary modules from git
-  (let (value)
-    (dolist (element '("love" "lua") value)
-      (unless (file-directory-p (concatenate 'string (getenv "HOME") "/.emacs.d/auto-complete-" element))
-        (shell-command (format "git clone %s %s" (concatenate 'string
-                                                              "https://github.com/rolpereira/auto-complete-" element ".el")
-                               (concatenate 'string (getenv "HOME") "/.emacs.d/auto-complete-" element) nil)))
-      (add-to-list 'load-path (expand-file-name (concatenate 'string "~/.emacs.d/auto-complete-" element)))))
-
-  (require 'auto-complete-love)
-  (require 'auto-complete-lua)
-
-  ;;; repl!
-  (add-hook 'lua-mode-hook '(lambda ()
-                              (local-set-key (kbd "C-c C-s") 'lua-show-process-buffer)
-                              (local-set-key (kbd "C-c C-h") 'lua-hide-process-buffer)))
-
-  ;;; ac > company
-  (use-package auto-complete
-    :ensure t
-    :config
-    (setq ac-use-menu-map t)
-    (setq ac-ignore-case nil)
-    (define-key ac-menu-map "\C-n" 'ac-next)
-    (define-key ac-menu-map "\C-p" 'ac-previous))
-
-  ;;; this will be changed, it's good enough for now
-  (add-hook 'lua-mode-hook '(lambda ()
-                              (setq ac-sources '(ac-source-love
-                                                 ac-source-lua
-                                                 ac-source-abbrev
-                                                 ac-source-words-in-same-mode-buffers))
-                              (auto-complete-mode)))
-
-  (add-hook 'lua-mode-hook 'auto-complete-mode)
-
-  ;;; I don't even know all the functionality
-  (use-package love-minor-mode
-    :ensure t
-    :config
-    (add-hook 'lua-mode-hook 'love-minor-mode))
-
-  ;;; behold, perfection :°)
-  (global-set-key (kbd "<f9>") '(lambda () (interactive) (start-process "love-play-game" nil "love" default-directory)))
-#+END_SRC
-
 * Git integration
 Countless are the times where I opened ansi-term to use =git= on something.
 These times are also something that I'd prefer stay in the past, since =magit= is
@@ -1373,7 +1319,7 @@ This also hides some of the channel messages to avoid cluttering the buffer.
 The other line changes the prompt for each channel buffer to match the channel name,
 this way you always know who you are typing to.
 #+BEGIN_SRC emacs-lisp
-  (setq erc-nick "daedreth")
+  (setq erc-nick "mraphael")
   (setq erc-prompt (lambda () (concat "[" (buffer-name) "]")))
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 #+END_SRC
