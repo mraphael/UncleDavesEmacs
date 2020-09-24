@@ -57,7 +57,8 @@ Since we are going to use emacs as our window manager, it would be nice to have 
 - =clang=, for c/c++ completion.
 - =sbcl=, for clisp completion and repl.
 - =virtualenv=, for python completion.
-- =lua=, for obvious reasons.
+- =auctex=, for bridge notes.
+- =ess=, for R.
 
 *** pip
 - =pip install jedi flake8 autopep8=, here, a one line install.
@@ -1177,6 +1178,19 @@ Each category also has additional settings.
       (require 'company)
       (add-hook 'shell-mode-hook 'shell-mode-company-init))
 #+END_SRC
+
+*** R
+#+BEGIN_SRC emacs-lisp
+  (use-package ess
+    :ensure t)
+#+END_SRC
+
+*** auctex
+#+BEGIN_SRC emacs-lisp
+  (use-package tex 
+    :ensure auctex)
+#+END_SRC
+
 
 * Git integration
 Countless are the times where I opened ansi-term to use =git= on something.
