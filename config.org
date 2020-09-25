@@ -389,7 +389,7 @@ to suit the software that you are using. What good is a launcher for discord if 
 
   (defun mraphael/launch-browser ()
     (interactive)
-    (exwm-async-run "qutebrowser"))
+    (exwm-async-run "firefox"))
 
   (defun mraphael/lock-screen ()
     (interactive)
@@ -477,10 +477,9 @@ These won't work in the terminal version or the virtual console, obvious reasons
 #+END_SRC
 
 ** Default browser
-I use qutebrowser, so that's what I'll set up.
 #+BEGIN_SRC emacs-lisp
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "qutebrowser")
+        browse-url-generic-program "firefox")
 #+END_SRC
 
 * Projectile
