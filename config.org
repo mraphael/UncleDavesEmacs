@@ -402,7 +402,7 @@ These can be modified as well, suit yourself.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "s-d") 'mraphael/launch-discord)
   (global-set-key (kbd "<s-tab>") 'mraphael/launch-browser)
-  (global-set-key (kbd "<XF86ScreenSaver>") 'mraphael/lock-screen)
+  (global-set-key (kbd "<s-f2>") 'mraphael/lock-screen)
   (global-set-key (kbd "<XF86PowerOff>") 'mraphael/shutdown)
 #+END_SRC
 
