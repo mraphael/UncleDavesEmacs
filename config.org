@@ -1033,8 +1033,8 @@ C-n and C-p totally work for this.
 
 * Programming
 Minor, non-completion related settings and plugins for writing code.
-
-** yasnippet
+*
+* yasnippet
 #+BEGIN_SRC emacs-lisp
     (use-package yasnippet
       :ensure t
@@ -1328,7 +1328,7 @@ This also hides some of the channel messages to avoid cluttering the buffer.
 The other line changes the prompt for each channel buffer to match the channel name,
 this way you always know who you are typing to.
 #+BEGIN_SRC emacs-lisp
-  (setq erc-nick "mraphael")
+  (setq erc-nick "crackedwheat")
   (setq erc-prompt (lambda () (concat "[" (buffer-name) "]")))
   (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 #+END_SRC
@@ -1336,8 +1336,9 @@ this way you always know who you are typing to.
 *** Poor mans selectable server list
 What it says on the tin, this changes the =erc= history to include the server I connect to often.
 #+BEGIN_SRC emacs-lisp
-  (setq erc-server-history-list '("irc.freenode.net"
+  (setq erc-server-history-list '("irc.libera.chat:6697"
                                   "localhost"))
+
 #+END_SRC
 
 *** Nick highlighting

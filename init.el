@@ -81,7 +81,7 @@
      ("s" . "src")
      ("v" . "verse")))
  '(package-selected-packages
-   '(ess pretty-mode bluetooth pulseaudio-control auctex indium js2-mode tramp zenburn-theme switch-window projectile helm love-minor-mode auto-complete slime-company slime company-jedi zzz-to-char rainbow-delimiters avy ivy twittering-mode zerodark-theme flycheck-clang-analyzer flycheck-irony flycheck yasnippet-snippets yasnippet company-c-headers company-shell company-irony irony irony-mode company-lua mark-multiple expand-region swiper popup-kill-ring dmenu ido-vertical-mode ido-vertical ox-html5slide centered-window-mode htmlize ox-twbs diminish erc-hl-nicks rainbow-mode dashboard smex company sudo-edit emms magit org-bullets hungry-delete beacon spaceline fancy-battery which-key use-package))
+   '(erc ess pretty-mode bluetooth pulseaudio-control auctex indium js2-mode tramp zenburn-theme switch-window projectile helm love-minor-mode auto-complete slime-company slime company-jedi zzz-to-char rainbow-delimiters avy ivy twittering-mode zerodark-theme flycheck-clang-analyzer flycheck-irony flycheck yasnippet-snippets yasnippet company-c-headers company-shell company-irony irony irony-mode company-lua mark-multiple expand-region swiper popup-kill-ring dmenu ido-vertical-mode ido-vertical ox-html5slide centered-window-mode htmlize ox-twbs diminish erc-hl-nicks rainbow-mode dashboard smex company sudo-edit emms magit org-bullets hungry-delete beacon spaceline fancy-battery which-key use-package))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8"))
 (custom-set-faces
